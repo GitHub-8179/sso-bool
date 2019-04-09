@@ -1,0 +1,184 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>支付宝支付demo</title>
+    <link href="../static/formValidator/dist/css/bootstrapValidator.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../static/css/sweetalert.css" rel="stylesheet" type="text/css"/>
+    
+<link href="../static/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" rel="stylesheet" type="text/css"/>
+
+ </head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center">
+    		登录页面
+<!--     <button onclick="saveUpdate1()">dddddd</button>
+ -->    
+     <div class="ibox-content">
+          <form class="form-horizontal m-t" id="signupForm" action="../sso/verifyLgoin">
+          	<div class="form-group hidden">
+                  <label class="col-sm-3 control-label">主键：</label>
+                  <div class="col-sm-8">
+                      <input id="url" name="url" class="form-control" placeholder="请输入地址" type="text">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">账号：</label>
+                  <div class="col-sm-8">
+                      <input id="user" name="user" class="form-control" placeholder="请输入账号"  type="text" >
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">密码：</label>
+                  <div class="col-sm-8">
+                      <input id="pass" name="pass" class="form-control" placeholder="请输入密码"  type="text">
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                  <label class="col-sm-3 control-label">编码：</label>
+                  <div class="col-sm-8">
+                      <input id="code" name="code" class="form-control" type="text">
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                  <div class="col-sm-8 col-sm-offset-3">
+                  <button class="btn btn-primary"  type="submit">提交</button>
+<!--                    <button class="btn btn-primary" type="button" onclick="verifyLgoin()">1提交</button>
+ -->                   
+ 						<button class="btn btn-primary"  type="reset" >重置</button>
+               </div>
+           </div>
+       </form>
+   </div>
+                    
+    </div>
+</body>
+
+	<script type="text/javascript" src= "../static/js/sweetalert.min.js"></script>
+	<script type="text/javascript" src= "../static/js/jquery.min.js">"</script>
+	<script type="text/javascript" src= "../static/formValidator/dist/js/bootstrapValidator.min.js">"</script>
+	<script type="text/javascript" src= "../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	
+<script type="text/javascript">
+init();
+function init(){
+ var url = location.search; //获取url中"?"符后的字串  
+   var theRequest = new Object();  
+   if (url.indexOf("?") != -1) {  
+      var str = url.substr(1);  
+      strs = str.split("&");  
+      for(var i = 0; i < strs.length; i ++) {  
+         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
+      }  
+   }  
+   $("#url").val(theRequest.server);
+
+   return theRequest;  
+}
+/* 
+function saveUpdate(){
+	$.ajax({
+	  	url:"/alipay/trade/page/pay",
+	  	type:"post",
+	  	data:{userId:1},
+	  	dataType: "json", 
+	  	error: function(result){ //失败
+	  		alert(result);
+	  	}, 
+	  	success:function(result){
+
+	  		$("#texct").load(result.data);
+	  		$("#iframe")[0].src = result.data;
+
+	  		debugger
+	  		alert();
+	  	}
+	}); 
+} */
+ 
+function saveUpdate1(){
+	$.ajax({
+	  	url:"http://106.2.13.148:8990/reptile/getPaperData?rows=1",
+	  	type:"get",
+	  	data:{userId:1},
+	  	dataType: "json", 
+	  	error: function(result){ //失败
+	  		alert(result);
+	  	}, 
+	  	success:function(result){
+	  		debugger
+	  	}
+	}); 
+}
+
+function verifyLgoin(){
+	$("#signupForm").bootstrapValidator('validate');//提交验证
+	if(!$("#signupForm").data('bootstrapValidator').isValid()){return ;};
+	alert($("#signupForm").serialize());
+	$.ajax({
+	  	url:"../sso/verifyLgoin",
+	  	type:"post",
+	  	data:$("#signupForm").serialize(),
+	  	dataType: "json", 
+	  	error: function(result){ //失败
+	  		alert();
+	  		 swal({
+	             text: "信息提交失败！",
+	             type: "error"
+	         });
+	  	}, 
+	  	success:function(result){
+	  		 swal({
+//	             title: "太帅了",
+             text: "信息提交成功！",
+             type: "success"
+         });
+	  	}
+	}); 
+}
+
+formValidator();
+function formValidator(){
+
+	$("#signupForm").bootstrapValidator({
+//	    live: 'disabled',//验证时机，enabled是内容有变化就验证（默认），disabled和submitted是提交再验证
+//	    excluded: [':disabled', ':hidden', ':not(:visible)'],//排除无需验证的控件，比如被禁用的或者被隐藏的
+//	    submitButtons: '#btn-test',//指定提交按钮，如果验证失败则变成disabled，但我没试成功，反而加了这句话非submit按钮也会提交到action指定页面
+	    message: '通用的验证失败消息',//好像从来没出现过
+	    feedbackIcons: {//根据验证结果显示的各种图标
+	        valid: 'glyphicon glyphicon-ok',
+	        invalid: 'glyphicon glyphicon-remove',
+	        validating: 'glyphicon glyphicon-refresh'
+	    },
+	    fields: {
+	    	user: {
+	            validators: {
+	                notEmpty: {message: '账号必须输入'},
+	                stringLength: {min: 0,max: 16,message: '图书类型长度必须在0-16之间'}
+	            }
+	        },
+	        pass: {
+	            validators: {
+	                notEmpty: {message: '密码必须输入'},
+	                stringLength: { min: 1,max: 16,message: '状态只能选择一个'}
+	            }
+	        },
+	        url: {
+	            validators: {
+	                notEmpty: {message: '请求地址不可为空！'},
+	                stringLength: {min: 0,max: 128,message: '图书名称长度为0——32位！'},
+	            }
+	        }
+	    },
+	    submitHandler: function (validator, form, submitButton) {
+	        alert("submit");
+	    }
+	});
+	} 
+</script>
+</html>
