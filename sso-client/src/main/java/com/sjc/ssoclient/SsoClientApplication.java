@@ -3,6 +3,7 @@ package com.sjc.ssoclient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -17,8 +18,15 @@ public class SsoClientApplication extends WebMvcConfigurerAdapter{
 		SpringApplication.run(SsoClientApplication.class, args);
 	}
 
-	@Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/**");
-    }
+//	//拦截器
+//	@Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(authInterceptor()).addPathPatterns("/**");
+//    }
+//	
+//	//拦截器注入spring管理
+//	@Bean
+//	public SessionInterceptor authInterceptor(){
+//	    return new SessionInterceptor();
+//	}
 }

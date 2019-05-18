@@ -1,0 +1,13 @@
+server:
+   port: 8080
+   
+sso:
+ server: 
+  url: http://www.ssoServer.com:8091/sso/login
+  token: http://www.ssoServer.com:8091/sso/verifyJWT
+ client:
+  index: http://www.ssoclient1.com:8080/testLogin
+  exitLogin: http://www.ssoclient1.com:8080/exitLogin
+  
+
+  

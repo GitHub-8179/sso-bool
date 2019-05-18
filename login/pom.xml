@@ -69,11 +69,17 @@
 		</dependency>
 		
 		<!-- kaptcha验证码 -->
-        <dependency>
+       <!--  <dependency>
         <groupId>com.github.penggle</groupId>
             <artifactId>kaptcha</artifactId>
             <version>2.3.2</version>
-        </dependency>
+        </dependency> -->
+		<!-- https://mvnrepository.com/artifact/com.oopsguy.kaptcha/kaptcha -->
+		<dependency>
+		    <groupId>com.oopsguy.kaptcha</groupId>
+		    <artifactId>kaptcha</artifactId>
+		    <version>1.0.0-beta-2</version>
+		</dependency>
 
 
 	<!-- https://mvnrepository.com/artifact/net.iharder/base64 -->

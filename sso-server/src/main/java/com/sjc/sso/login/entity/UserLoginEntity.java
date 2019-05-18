@@ -1,4 +1,4 @@
-package com.sjc.sso.entity;
+package com.sjc.sso.login.entity;
 
 public class UserLoginEntity {
 

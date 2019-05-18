@@ -8,6 +8,7 @@
     <link href="../static/css/sweetalert.css" rel="stylesheet" type="text/css"/>
     
 <link href="../static/bootstrap-3.3.7-dist/css/bootstrap-table.min.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src= "../static/js/jquery.min.js">"</script>
 
  </head>
 
@@ -19,7 +20,9 @@
  -->    
      <div class="ibox-content">
           <form class="form-horizontal m-t" id="signupForm" action="../sso/verifyLgoin">
-          	<div class="form-group hidden">
+<!--           	<div class="form-group hidden">
+ -->          	 <div class="form-group">
+          	
                   <label class="col-sm-3 control-label">主键：</label>
                   <div class="col-sm-8">
                       <input id="url" name="url" class="form-control" placeholder="请输入地址" type="text">
@@ -41,7 +44,7 @@
               <div class="form-group">
                   <label class="col-sm-3 control-label">编码：</label>
                   <div class="col-sm-8">
-                      <input id="code" name="code" class="form-control" type="text">
+                      <input id="code" name="code"  class="form-control" type="text">
                   </div>
               </div>
               
@@ -60,13 +63,13 @@
 </body>
 
 	<script type="text/javascript" src= "../static/js/sweetalert.min.js"></script>
-	<script type="text/javascript" src= "../static/js/jquery.min.js">"</script>
 	<script type="text/javascript" src= "../static/formValidator/dist/js/bootstrapValidator.min.js">"</script>
 	<script type="text/javascript" src= "../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	
 <script type="text/javascript">
 init();
 function init(){
+	debugger
  var url = location.search; //获取url中"?"符后的字串  
    var theRequest = new Object();  
    if (url.indexOf("?") != -1) {  
@@ -77,7 +80,6 @@ function init(){
       }  
    }  
    $("#url").val(theRequest.server);
-
    return theRequest;  
 }
 /* 
